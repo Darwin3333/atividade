@@ -47,7 +47,11 @@ export class AppService {
     return this.coffees;
   }
 
-  createCoffee(coffee: Coffee): { message: string; cafe: Coffee } {
+  createCoffee(coffee: Coffee): {
+    message: string;
+    codigo: string;
+    cafe: Coffee;
+  } {
     const existCoffee = this.coffees.find((c) => c.id === coffee.id);
     if (existCoffee) {
       throw new BadRequestException('Café já cadastrado');
@@ -57,6 +61,7 @@ export class AppService {
 
     return {
       message: 'Café criado com sucesso',
+      codigo: '201',
       cafe: coffee,
     };
   }
